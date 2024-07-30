@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Banking Web</title>
+</head>
+<body>
+    
+    <div class="container">
+
+        <h1 class="mt-4 text-center">BANKING WEB - TAREA JAVA</h1>
+
+        <div class="d-flex justify-content-end mt-4">
+            <button class="btn btn-success me-4" data-bs-toggle="modal" data-bs-target="#newAccount">Nueva Cuenta</button>
+        </div>
+
+        <table id="tableAccounts" class="table mt-4">
+            <thead class="text-center">
+                <tr>
+                    <th>ID</th>
+                    <th>Account</th>
+                    <th>Balance</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+
+    <!-- Modal Nueva Cuenta -->
+    <div class="modal fade" id="newAccount" tabindex="-1" aria-labelledby="newAccountLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="newAccountLabel">Insertar Nueva Cuenta</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="formNewAccount">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Nombre de la Cuenta</label>
+                        <input type="text" class="form-control" name="accountHolderName" pattern="[A-Za-z\s]+" title="El nombre solo puede contener letras y espacios." required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Ingrese Saldo de la Cuenta</label>
+                        <input type="number" class="form-control" name="balance" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" id="saveAccount">Guardar</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar Cuenta -->
+    <div class="modal fade" id="editAccountModal" tabindex="-1" aria-labelledby="editAccountModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editAccountModalLabel">Editar Cuenta</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="formEditAccount">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Nombre de la Cuenta</label>
+                        <input type="text" class="form-control" name="accountHolderName" pattern="[A-Za-z\s]+" title="El nombre solo puede contener letras y espacios." required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Ingrese Saldo de la Cuenta</label>
+                        <input type="number" class="form-control" name="balance" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" id="updateAccount">Guardar</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal Depositar -->
+    <div class="modal fade" id="depositAccountModal" tabindex="-1" aria-labelledby="depositAccountModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="depositAccountModalLabel">Depositar en Cuenta</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="formDepositAccount">
+                <div class="modal-body">
+                    <p id="currentBalanceDeposit" class="mb-3">Saldo Actual: </p>
+                    <div class="mb-3">
+                        <label class="form-label">Ingrese Monto a Depositar</label>
+                        <input type="number" class="form-control" name="depositAmount" min="0" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" id="depositAccount">Depositar</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal Retirar -->
+    <div class="modal fade" id="withdrawAccountModal" tabindex="-1" aria-labelledby="withdrawAccountModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="withdrawAccountModalLabel">Retirar de Cuenta</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="formWithdrawAccount">
+                <div class="modal-body">
+                    <p id="currentBalanceWithdraw" class="mb-3">Saldo Actual: </p>
+                    <div class="mb-3">
+                        <label class="form-label">Ingrese Monto a Retirar</label>
+                        <input type="number" class="form-control" name="withdrawAmount" min="0" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success" id="withdrawAccount">Retirar</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+</body>
+</html>
